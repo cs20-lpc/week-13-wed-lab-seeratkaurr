@@ -1,16 +1,60 @@
+// ArrayList.tpp
+
 template <typename T>
 void ArrayList<T>::bubbleSort() {
-    // TODO
+    // Standard bubble sort (ascending)
+    for (int i = 0; i < this->length - 1; ++i) {
+        for (int j = 0; j < this->length - 1 - i; ++j) {
+            // Compare buffer[j] and buffer[j + 1]
+            numComps++;
+            if (buffer[j + 1] < buffer[j]) {
+                swap(j, j + 1);
+                numSwaps++;
+            }
+        }
+    }
 }
 
 template <typename T>
 void ArrayList<T>::insertionSort() {
-    // TODO
+    // Insertion sort implemented via adjacent swaps (ascending)
+    for (int i = 1; i < this->length; ++i) {
+        int j = i;
+        while (j > 0) {
+            // Compare buffer[j] with buffer[j - 1]
+            numComps++;
+            if (buffer[j] < buffer[j - 1]) {
+                swap(j, j - 1);
+                numSwaps++;
+                --j;
+            }
+            else {
+                // Already in correct position
+                break;
+            }
+        }
+    }
 }
 
 template <typename T>
 void ArrayList<T>::selectionSort() {
-    // TODO
+    // Standard selection sort (ascending)
+    for (int i = 0; i < this->length - 1; ++i) {
+        int minIndex = i;
+
+        for (int j = i + 1; j < this->length; ++j) {
+            // Compare buffer[j] and buffer[minIndex]
+            numComps++;
+            if (buffer[j] < buffer[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        if (minIndex != i) {
+            swap(i, minIndex);
+            numSwaps++;
+        }
+    }
 }
 
 /*******************************************************************************
@@ -195,3 +239,4 @@ ostream& operator<<(ostream& outStream, const ArrayList<T>& myObj) {
 
     return outStream;
 }
+
